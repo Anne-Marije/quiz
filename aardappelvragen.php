@@ -1,5 +1,30 @@
-<html>
-<form action='aardappel.php' method='post'>
+<script>
+    
+
+    
+    function volgende(){
+        
+        <?php
+        $output = $_GET['vraag'];
+        ++$output;
+        
+        if($output>5){
+       echo "klaar";
+            
+        }
+        ?>
+                 
+        var data = <?php echo json_encode($output, JSON_HEX_TAG); ?>;
+        document.location='aardappelvragen.php?vraag='+data;
+    }
+    
+    
+    
+
+  
+    
+</script>
+
 <?php
 session_start();
 
@@ -34,27 +59,51 @@ $result = $conn->query($sql);
         $goed = $keuze[0];
         shuffle($keuze);
         echo '<br>';
-        echo'<form action="" method="post">'; 
+        echo'<form action="" method="POST" name="name1">'; 
             for($y=0; $y<count($keuze);$y++){
-                 echo "<input type='radio' name=".$_GET['vraag']." value='$keuze[$y]'>". $keuze[$y];
+                 echo "<input type='radio' name=vraag".$_GET['vraag']." value='$keuze[$y]'>". $keuze[$y];
                 if ($goed == $keuze[$y]){
                     echo 'goede antwoord';
                 }
                 echo '<br>';
+               
             }
             
-        echo '<input type="submit" value="Submit" name="submit"></form>';    
+        echo "<input onclick='volgende()' type='submit' value='submit' ></form>";    
+        echo "<input type='button' onclick='volgende()' value='volgende vraag'>";
         
-        if (isset($_POST['submit'])) { 
-        $_SESSION['antwoord'.$_GET['vraag']] = $_POST["".$_GET['vraag'].""];
- } 
+if(isset($_POST['vraag1'])){
+$_SESSION['vraag1'] = $_POST['vraag1'];
+}
+if(isset($_POST['vraag2'])){
+$_SESSION['vraag2'] = $_POST['vraag2'];
+}
+if(isset($_POST['vraag3'])){
+$_SESSION['vraag3'] = $_POST['vraag3'];
+}
+if(isset($_POST['vraag4'])){
+$_SESSION['vraag4'] = $_POST['vraag4'];
+}
+if(isset($_POST['vraag5'])){
+$_SESSION['vraag5'] = $_POST['vraag5'];
+}
+
+echo $_SESSION['vraag1'];
+echo "<br>";
+echo $_SESSION['vraag2'];
+echo "<br>";
+echo $_SESSION['vraag3'];
+echo "<br>";
+echo $_SESSION['vraag4'];
+echo "<br>";
+echo $_SESSION['vraag5'];
 
 ?>
+
     
 <!--    <input type=button onClick="location.href='aardappelquiz.php'" value='klaar'>-->
-    
-</form>  
-    <input type="button" onclick="volgende()" value="volgende vraag">
+      
+<!--    <input type="button" onclick="volgende()" value="volgende vraag">-->
     <input type=button onClick="location.href='aardappelquiz.php'" value='klaar'>
 </html>
 
