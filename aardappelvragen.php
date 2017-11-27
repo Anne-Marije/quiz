@@ -19,10 +19,9 @@ if($conn->connect_error){
 
 
 //ophalen vragen uit database
-$sql = "SELECT `vraag`, `id`, `afbeelding` FROM `vragen` ORDER BY `id` ASC;";
+$sql = "SELECT `vraag`, `id`, `afbeelding` FROM `vragen` WHERE `id` = ".$_GET['vraag']."";
 $result = $conn->query($sql);
          
-    for ($x = 0; $x < $result->num_rows; $x++) {
         $row = $result->fetch_assoc();
 
         echo "<br><b>".$row['vraag']."<br></b>";
@@ -35,36 +34,53 @@ $result = $conn->query($sql);
         $goed = $keuze[0];
         shuffle($keuze);
         echo '<br>';
-         
+        echo'<form action="" method="post">'; 
             for($y=0; $y<count($keuze);$y++){
-                 echo "<input type='radio' name='keuze' value='$keuze[$y]'></form>". $keuze[$y];
+                 echo "<input type='radio' name=".$_GET['vraag']." value='$keuze[$y]'>". $keuze[$y];
                 if ($goed == $keuze[$y]){
                     echo 'goede antwoord';
                 }
                 echo '<br>';
             }
-    }
+            
+        echo '<input type="submit" value="Submit" name="submit"></form>';    
+        
+        if (isset($_POST['submit'])) { 
+        $_SESSION['antwoord'.$_GET['vraag']] = $_POST["".$_GET['vraag'].""];
+ } 
 
 ?>
-
-
-    <input type=button onclick="volgende()" value='volgende vraag'>
-
-    <input type="submit" value="Submit">
-
+    
+<!--    <input type=button onClick="location.href='aardappelquiz.php'" value='klaar'>-->
+    
+</form>  
+    <input type="button" onclick="volgende()" value="volgende vraag">
     <input type=button onClick="location.href='aardappelquiz.php'" value='klaar'>
-</form>    
 </html>
 
 <script>
     
-    var n = 0
+    
     function volgende(){
-        n++;
-        alert (n);
         
+        <?php
+        $output = $_GET['vraag'];
+        ++$output;
+        
+        if($output>5){
+       echo "klaar";
+            
+        }
+        ?>
+                 
+        var data = <?php echo json_encode($output, JSON_HEX_TAG); ?>;
+        document.location='aardappelvragen.php?vraag='+data;
     }
-        
-   
+    
+    
+    
+
+  
     
 </script>
+        
