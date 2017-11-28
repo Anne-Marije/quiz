@@ -1,7 +1,6 @@
 <script>
     
 
-    
     function volgende(){
         
         <?php
@@ -61,17 +60,23 @@ $result = $conn->query($sql);
         echo '<br>';
         echo'<form action="" method="POST" name="name1">'; 
             for($y=0; $y<count($keuze);$y++){
-                 echo "<input type='radio' name=vraag".$_GET['vraag']." value='$keuze[$y]'>". $keuze[$y];
-                if ($goed == $keuze[$y]){
-                    echo 'goede antwoord';
-                }
+                 echo "<input type='radio'  name=vraag".$_GET['vraag']." value='$keuze[$y]' >". $keuze[$y];
+                $score=0;
+                 if ($goed == $keuze[$y]){
+                    $score++; 
+
+		}
+                echo '<br>';
+		}
+                    
                 echo '<br>';
                
-            }
             
-        echo "<input onclick='volgende()' type='submit' value='submit' ></form>";    
-        echo "<input type='button' onclick='volgende()' value='volgende vraag'>";
-        
+           echo $score;
+        echo "<input type='submit' value='submit' ></form>";    
+       echo "<input type='button' onclick='volgende()' value='volgende vraag'>";
+
+    
 if(isset($_POST['vraag1'])){
 $_SESSION['vraag1'] = $_POST['vraag1'];
 }
@@ -88,15 +93,15 @@ if(isset($_POST['vraag5'])){
 $_SESSION['vraag5'] = $_POST['vraag5'];
 }
 
-echo $_SESSION['vraag1'];
-echo "<br>";
-echo $_SESSION['vraag2'];
-echo "<br>";
-echo $_SESSION['vraag3'];
-echo "<br>";
-echo $_SESSION['vraag4'];
-echo "<br>";
-echo $_SESSION['vraag5'];
+$score=0; 
+echo "<h1>blaldassdiuhgu</h1>";
+if ($_SESSION['vraag1'] == 'Zuid-Amerika'){
+    
+    $score++; 
+    echo "<h1>blaldassdiuhgu</h1>";
+}
+
+
 
 ?>
 
