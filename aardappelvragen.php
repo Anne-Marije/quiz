@@ -1,3 +1,12 @@
+<html>
+    <head>
+        <script src="aardappel.js"></script>
+        <link rel="stylesheet" type="text/css" href="aardappel.css">
+    </head>
+    
+    
+</html>
+
 <script>
     
 
@@ -17,10 +26,7 @@
         document.location='aardappelvragen.php?vraag='+data;
     }
     
-    
-    
 
-  
     
 </script>
 
@@ -47,8 +53,7 @@ $sql = "SELECT `vraag`, `id`, `afbeelding` FROM `vragen` WHERE `id` = ".$_GET['v
 $result = $conn->query($sql);
          
         $row = $result->fetch_assoc();
-
-        echo "<br><b>".$row['vraag']."<br></b>";
+        echo "<div id='kop'><br>".$row['vraag']."</div><br>";
         echo "<img src=".$row['afbeelding']." style='width:300px'><br>";
         
        $sql1="SELECT antwoord, keuze1, keuze2, keuze3 FROM quiz WHERE vraagid = ". $row['id']."";
@@ -60,7 +65,7 @@ $result = $conn->query($sql);
         echo '<br>';
         echo'<form action="" method="POST" name="name1">'; 
             for($y=0; $y<count($keuze);$y++){
-                 echo "<input type='radio'  name=vraag".$_GET['vraag']." value='$keuze[$y]' >". $keuze[$y];
+                 echo "<input id='radio' type='radio'  name=vraag".$_GET['vraag']." value='$keuze[$y]' ><span id='par'>". $keuze[$y]."</span>";
                 $score=0;
                  if ($goed == $keuze[$y]){
                     $score++; 
@@ -73,8 +78,8 @@ $result = $conn->query($sql);
                
             
          
-        echo "<input type='submit' value='submit' ></form>";    
-       echo "<input type='button' onclick='volgende()' value='volgende vraag'>";
+        echo "<input id='knop' type='submit' value='submit' ></form>";    
+       echo "<input id='knop' type='button' onclick='volgende()' value='volgende vraag'>";
 
     
 if(isset($_POST['vraag1'])){
@@ -138,11 +143,8 @@ if ($_SESSION['vraag5'] == 'De aardappels zijn blootgesteld aan licht'){
 
 ?>
 
-    
-<!--    <input type=button onClick="location.href='aardappelquiz.php'" value='klaar'>-->
-      
-<!--    <input type="button" onclick="volgende()" value="volgende vraag">-->
-    <input type=button onClick="location.href='aardappelquiz.php'" value='klaar'>
+
+<input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='klaar'>
 </html>
 
 <script>

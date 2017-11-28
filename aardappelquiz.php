@@ -1,11 +1,17 @@
-
+<html>  
+    <head>
+        <script src="aardappel.js"></script>
+        <link rel="stylesheet" type="text/css" href="aardappel.css">
+    </head>
+</html> 
 
 <html>
-    
-    startpagina van quiz
+    <div id="midden">
+    <div id="kop">startpagina van quiz</div><br>
     
    
-    <input type=button onClick="start()" value='test je aardappel kennis'>
+    <input id="knop" type=button onClick="start()" value='test je aardappel kennis'>
+    </div>
     
     <script> 
     var n = 0

@@ -1,0 +1,33 @@
+
+
+#midden{
+    margin-top: 150px;
+    margin-left: 500px;
+    margin-right: 50px;
+    margin-bottom: 200px;     
+}
+
+#kop{
+    font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+    font-weight: 700;
+    font-size: 19px;  
+}
+
+#par{
+    font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+    font-weight: 400;
+    font-size: 15px;  
+}
+#knop{
+    background-image: url("knop1.jpg");
+    
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;     
+}
+#knop:hover{-webkit-filter: grayscale(100%);
+            filter: grayscale(70%);}
