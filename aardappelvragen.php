@@ -72,7 +72,7 @@ $result = $conn->query($sql);
                 echo '<br>';
                
             
-           echo $score;
+         
         echo "<input type='submit' value='submit' ></form>";    
        echo "<input type='button' onclick='volgende()' value='volgende vraag'>";
 
@@ -92,16 +92,49 @@ $_SESSION['vraag4'] = $_POST['vraag4'];
 if(isset($_POST['vraag5'])){
 $_SESSION['vraag5'] = $_POST['vraag5'];
 }
+//
+//$sql = "SELECT `antwoord` FROM `quiz` WHERE vraagid = ". $row['id']."";
+//$result2 = $conn->query($sql);
+//for($a=0;$a<$result2->num_rows;$a++){
+//   $row2 =$result2->fetch_assoc();
+//   echo $row2; 
+//}
+
+
 
 $score=0; 
-echo "<h1>blaldassdiuhgu</h1>";
+
 if ($_SESSION['vraag1'] == 'Zuid-Amerika'){
     
     $score++; 
-    echo "<h1>blaldassdiuhgu</h1>";
+    
+}
+if ($_SESSION['vraag2'] == 'Vincent van Gogh'){
+    
+    $score++; 
+   
+}
+if ($_SESSION['vraag3'] == 'Zoete aardappel'){
+    
+    $score++; 
+ 
+}
+if ($_SESSION['vraag4'] == 'Uitspraak van Marie-Antionette over de honger in Frankrijk: "Dan eten ze toch aardappelen."'){
+    
+    $score++; 
+ 
+}  
+if ($_SESSION['vraag5'] == 'De aardappels zijn blootgesteld aan licht'){
+    
+    $score++; 
+  
 }
 
+  echo $score;
+                 
 
+	
+               
 
 ?>
 
