@@ -3,9 +3,6 @@
         <script src="aardappel.js"></script>
         <link rel="stylesheet" type="text/css" href="aardappel.css">
     </head>
-    
-    
-
 
 <script>
     
@@ -15,10 +12,7 @@
         $output = $_GET['vraag'];
         ++$output;
         
-        if($output == 6){
-       
-            
-        }
+        
         ?>
                  
         var data = <?php echo json_encode($output, JSON_HEX_TAG); ?>;
@@ -27,7 +21,7 @@
     
     
 </script>
-<div align=center>
+<div id="hoofd" align=center>
 <?php
 session_start();
 $host="localhost";
@@ -59,21 +53,25 @@ $result = $conn->query($sql);
         echo '<br>';
         echo'<form action="aardappelvragen.php?vraag='.$output.'" method="POST" name="name1">'; 
             for($y=0; $y<count($keuze);$y++){
-                 echo "<input id='radio' type='radio'  name=vraag".$_GET['vraag']." value='$keuze[$y]' ><span id='par'>". $keuze[$y]."</span>";
-                $score=0;
-                 if ($goed == $keuze[$y]){
-                    $score++; 
-		}
+                echo "<input id='radio' type='radio'  name=vraag".$_GET['vraag']." value='$keuze[$y]' ><span id='par'>". $keuze[$y]."</span>";
+
                 echo '<br>';
 		}
+                    
                     
                 echo '<br>';
                
             
          
-        echo "<input id='knop' type='submit' value='submit' ></form>";    
+        echo "<input id='knop' type='submit' value='volgende vraag' ></form>";    
        
-    
+ 
+        $sql2="SELECT antwoord FROM quiz";
+        $result2 = $conn->query($sql1);
+        $row2 =$result2->fetch_assoc();
+        
+    echo $row2['antwoord']."laat goed antwoord zien";    
+        
 if(isset($_POST['vraag1'])){
 $_SESSION['vraag1'] = $_POST['vraag1'];
 }
@@ -90,37 +88,39 @@ if(isset($_POST['vraag5'])){
 $_SESSION['vraag5'] = $_POST['vraag5'];
 }
 
-$score=0; 
-if ($_SESSION['vraag1'] == 'Zuid-Amerika'){
-    
-    $score++; 
-    
-}
-if ($_SESSION['vraag2'] == 'Vincent van Gogh'){
-    
-    $score++; 
-   
-}
-if ($_SESSION['vraag3'] == 'Zoete aardappel'){
-    
-    $score++; 
- 
-}
-if ($_SESSION['vraag4'] == 'Uitspraak van Marie-Antionette over de honger in Frankrijk: "Dan eten ze toch aardappelen."'){
-    
-    $score++; 
- 
-}  
-if ($_SESSION['vraag5'] == 'De aardappels zijn blootgesteld aan licht'){
-    
-    $score++;  
-}
-  echo $score;
-                 
-	
-               
-?>
+print_r($_SESSION);
+//$antwoorden = array($_SESSION['vraag1'],$_SESSION['vraag2'],$_SESSION['vraag3'],$_SESSION['vraag4'], $_SESSION['vraag']);
 
+$score=0; 
+if ($_SESSION == $row2['antwoord']){
+    
+    $score++; 
+    
+}
+
+echo $score;
+//if ($_SESSION['vraag2'] == 'Vincent van Gogh'){
+//    
+//    $score++; 
+//   
+//}
+//if ($_SESSION['vraag3'] == 'Zoete aardappel'){
+//    
+//    $score++; 
+// 
+//}
+//if ($_SESSION['vraag4'] == 'Uitspraak van Marie-Antionette over de honger in Frankrijk: "Dan eten ze toch aardappelen."'){
+//    
+//    $score++; 
+// 
+//}  
+//if ($_SESSION['vraag5'] == 'De aardappels zijn blootgesteld aan licht'){
+//    
+//    $score++;  
+//}
+//  echo $score;
+                             
+?>
 
 <input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='klaar'>
 </div>

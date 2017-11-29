@@ -9,7 +9,7 @@
 session_start();
 
 $host="localhost";
-$databasename="aardappel";
+$databasename="aardappelquiz";
 $username="root";
 $password="";
 
