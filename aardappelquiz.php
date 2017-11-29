@@ -6,7 +6,7 @@
 </html> 
 
 <html>
-    <div id="midden">
+    <div align=center>
     <div id="kop">startpagina van quiz</div><br>
     
    

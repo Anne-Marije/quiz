@@ -1,16 +1,11 @@
 
 
-#midden{
-    margin-top: 150px;
-    margin-left: 500px;
-    margin-right: 50px;
-    margin-bottom: 200px;     
-}
 
 #kop{
     font-family: "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
     font-weight: 700;
-    font-size: 19px;  
+    font-size: 19px; 
+    color: #3d3d5c;
 }
 
 #par{

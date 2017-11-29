@@ -5,19 +5,18 @@
     </head>
     
     
-</html>
+
 
 <script>
     
-
     function volgende(){
         
         <?php
         $output = $_GET['vraag'];
         ++$output;
         
-        if($output>5){
-       echo "klaar";
+        if($output == 6){
+       
             
         }
         ?>
@@ -26,28 +25,21 @@
         document.location='aardappelvragen.php?vraag='+data;
     }
     
-
     
 </script>
-
+<div align=center>
 <?php
 session_start();
-
 $host="localhost";
 $databasename="aardappelquiz";
 $username="root";
 $password="";
-
 //create connection
 $conn= new mysqli($host, $username, $password, $databasename);
-
 //check connection
 if($conn->connect_error){
     die("Connection failed: ".$conn->connect_error);
 }
-
-
-
 //ophalen vragen uit database
 $sql = "SELECT `vraag`, `id`, `afbeelding` FROM `vragen` WHERE `id` = ".$_GET['vraag']."";
 $result = $conn->query($sql);
@@ -56,6 +48,8 @@ $result = $conn->query($sql);
         echo "<div id='kop'><br>".$row['vraag']."</div><br>";
         echo "<img src=".$row['afbeelding']." style='width:300px'><br>";
         
+ 
+ 
        $sql1="SELECT antwoord, keuze1, keuze2, keuze3 FROM quiz WHERE vraagid = ". $row['id']."";
         $result1 = $conn->query($sql1);
         $row1 =$result1->fetch_assoc();
@@ -63,13 +57,12 @@ $result = $conn->query($sql);
         $goed = $keuze[0];
         shuffle($keuze);
         echo '<br>';
-        echo'<form action="" method="POST" name="name1">'; 
+        echo'<form action="aardappelvragen.php?vraag='.$output.'" method="POST" name="name1">'; 
             for($y=0; $y<count($keuze);$y++){
                  echo "<input id='radio' type='radio'  name=vraag".$_GET['vraag']." value='$keuze[$y]' ><span id='par'>". $keuze[$y]."</span>";
                 $score=0;
                  if ($goed == $keuze[$y]){
                     $score++; 
-
 		}
                 echo '<br>';
 		}
@@ -79,8 +72,7 @@ $result = $conn->query($sql);
             
          
         echo "<input id='knop' type='submit' value='submit' ></form>";    
-       echo "<input id='knop' type='button' onclick='volgende()' value='volgende vraag'>";
-
+       
     
 if(isset($_POST['vraag1'])){
 $_SESSION['vraag1'] = $_POST['vraag1'];
@@ -97,18 +89,8 @@ $_SESSION['vraag4'] = $_POST['vraag4'];
 if(isset($_POST['vraag5'])){
 $_SESSION['vraag5'] = $_POST['vraag5'];
 }
-//
-//$sql = "SELECT `antwoord` FROM `quiz` WHERE vraagid = ". $row['id']."";
-//$result2 = $conn->query($sql);
-//for($a=0;$a<$result2->num_rows;$a++){
-//   $row2 =$result2->fetch_assoc();
-//   echo $row2; 
-//}
-
-
 
 $score=0; 
-
 if ($_SESSION['vraag1'] == 'Zuid-Amerika'){
     
     $score++; 
@@ -131,45 +113,17 @@ if ($_SESSION['vraag4'] == 'Uitspraak van Marie-Antionette over de honger in Fra
 }  
 if ($_SESSION['vraag5'] == 'De aardappels zijn blootgesteld aan licht'){
     
-    $score++; 
-  
+    $score++;  
 }
-
   echo $score;
                  
-
 	
                
-
 ?>
 
 
 <input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='klaar'>
+</div>
 </html>
 
-<script>
-    
-    
-    function volgende(){
-        
-        <?php
-        $output = $_GET['vraag'];
-        ++$output;
-        
-        if($output>5){
-       echo "klaar";
-            
-        }
-        ?>
-                 
-        var data = <?php echo json_encode($output, JSON_HEX_TAG); ?>;
-        document.location='aardappelvragen.php?vraag='+data;
-    }
-    
-    
-    
-
-  
-    
-</script>
         
