@@ -7,7 +7,7 @@
 
 <html>
  <div id="hoofd" align=center>
-     <br>
+    <br>
     <div id="kop">aardappelen</div><br>
     <div id="quiz">
     <image src="einstein.jpg" style="width: 227px"/><br><br>
