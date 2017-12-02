@@ -44,6 +44,9 @@ if ($_SESSION['vraag5'] == 'De aardappels zijn blootgesteld aan licht'){
     echo "je hebt er $score van de 5";
     session_destroy();
  ?>
+        
+   
+    
     </div><br>
      <input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='menu'>  
 </div>

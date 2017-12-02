@@ -40,7 +40,7 @@ if($conn->connect_error){
     die("Connection failed: ".$conn->connect_error);
 }
 //ophalen vragen uit database
-$sql = "SELECT `vraag`, `id`, `afbeelding` FROM `vragen` WHERE `id` = ".$_GET['vraag']."";
+$sql = "SELECT `vraag`, `id`, `afbeelding` FROM `amn_vragen` WHERE `id` = ".$_GET['vraag']."";
 $result = $conn->query($sql);
          
 
@@ -65,7 +65,7 @@ if(isset($_POST['vraag5'])){
 $_SESSION['vraag5'] = $_POST['vraag5'];
 } 
  
-       $sql1="SELECT antwoord, keuze1, keuze2, keuze3 FROM quiz WHERE vraagid = ". $row['id']."";
+       $sql1="SELECT antwoord, keuze1, keuze2, keuze3 FROM amn_quiz WHERE vraagid = ". $row['id']."";
         $result1 = $conn->query($sql1);
         $row1 =$result1->fetch_assoc();
         $keuze = array ($row1['antwoord'],$row1['keuze1'], $row1['keuze2'], $row1['keuze3']);
@@ -87,7 +87,7 @@ $_SESSION['vraag5'] = $_POST['vraag5'];
         echo "<input id='knop' type='submit' value='volgende vraag' ></form>";    
        
  
-        $sql2="SELECT antwoord FROM quiz";
+        $sql2="SELECT antwoord FROM amn_quiz";
         $result2 = $conn->query($sql1);
         $row2 =$result2->fetch_assoc();
         

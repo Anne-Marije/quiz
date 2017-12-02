@@ -3,51 +3,63 @@
         <script src="aardappel.js"></script>
         <link rel="stylesheet" type="text/css" href="aardappel.css">
     </head>
- 
 
-<?php
-session_start();
 
-$host="localhost";
-$databasename="aardappelquiz";
-$username="root";
-$password="";
+    <?php
+    session_start();
 
-$conn= new mysqli($host, $username, $password, $databasename);
+    $host = "localhost";
+    $databasename = "aardappelquiz";
+    $username = "root";
+    $password = "";
 
-?>
-<div id="hoofd" align=center>
+    $conn = new mysqli($host, $username, $password, $databasename);
+    ?>
+    <div id="hoofd" align=center>
         <br><br>
-<div id="kop">heerlijke aardappel recepten</div><br><br>
-    
-    
+        <div id="kop">heerlijke aardappel recepten</div><br><br>
 
-<?php
+
+
+        <?php
 //echo $_SESSION['naam'];
-        
 
-    
-    $sql2="SELECT * FROM `recepten`";
-        $result2 = $conn->query($sql2);
-        $row3 =$result2->fetch_assoc();
-        $recept = array ($row3['titel'],$row3['personen'], $row3['ingredienten'], $row3['bereiding']);
-       
-//        print_r($row3);
-//        print_r($recept);
-        
-        for($o=0; $o<count($row3);$o++){
-             echo $row3['titel'];
-            
+
+
+        $sql = "SELECT * FROM `amn_recepten`";
+        $result = $conn->query($sql);
+
+//        $recept = array($row3['titel'], $row3['personen'], $row3['ingredienten'], $row3['bereiding']);
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+                
+                echo "<details><summary>".$row['titel']."<span align='right'><input type='button' id='weg' onClick='weg(".$row['id'].")' value='verwijder' style='float: right'></span> </summary>";
+                echo "<p>"."aantal personen: <b>".$row['personen']."</b></p>" ; 
+                echo "<p>"."ingredienten: <b>".$row['ingredienten']."</b></p>" ; 
+                echo "<p>"."bereiding: <b>".$row['bereiding']."</b></p>" ; 
+                $_GET['id']=$row['id'];
+                echo "</details>";
+               
+            }
+        } else {
+            echo "0 results";
         }
         
-        
-//            for($y=0; $y< $row1->num_rows;$y++){
-//                echo $row1;
-//                echo "<br>";
-//		}
-//    
-?>
+     
+ 
+    
+        ?>
+  <script>
+    function weg(id){
+        alert(id);
+        window.location.href="aardappel.php?id="+id;
+}
 
-  <input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='menu'>  
-  </div>
-    </html>
+   
+    </script>
+       
+        <br>
+        <input id="knop" type=button onClick="location.href = 'aardappelquiz.php'" value='menu'>  
+    </div>
+</html>

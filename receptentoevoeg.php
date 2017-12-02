@@ -30,9 +30,7 @@ $conn= new mysqli($host, $username, $password, $databasename);
         <span id='par'>bereiding:</span><br>
         <textarea rows="4" cols="50" name="bereiding" > </textarea><br><br>
         <input id="knop" type="submit" name="login" value="verstuur">
-        <input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='menu'>  <br>
-        
-        
+        <input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='menu'>  <br>  
     </form>
     
 
@@ -40,13 +38,29 @@ $conn= new mysqli($host, $username, $password, $databasename);
 
 if (isset($_GET['aantal'])){
     $conn= new mysqli($host, $username, $password, $databasename);
-    $sql2="INSERT INTO `recepten`(`titel`, `personen`, `ingredienten`, `bereiding`) VALUES ('" . $_GET['naam'] . "','" . $_GET['aantal'] . "','" . $_GET['ingredienten'] . "','". $_GET['bereiding']."')";
+    $sql2="INSERT INTO `amn_recepten`(`titel`, `personen`, `ingredienten`, `bereiding`) VALUES ('" . $_GET['naam'] . "','" . $_GET['aantal'] . "','" . $_GET['ingredienten'] . "','". $_GET['bereiding']."')";
     $conn->query($sql2);
         
 }
 
-
-
+//
+//class recept{
+//    public $titel;
+//    public $aantal;
+//    public $ingredienten;
+//    public $bereiding;
+//    
+//}
+//
+//
+//$recept = new recept;
+//
+//$recept ->titel = $_GET['naam'];
+//$recept ->aantal = $_GET['aantal'];
+//$recept ->ingredienten = $_GET['ingredienten'];
+//$recept ->bereiding = $_GET['bereiding'];
+//
+//
 ?>
 
   
