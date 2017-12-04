@@ -22,7 +22,7 @@
     
 </div>
     
-    <script> 
+<!--    <script> 
     var n = 0
     function start(){
         n++;
@@ -30,13 +30,11 @@
     }
     
     function toevoeg(){
-        n++;
         document.location='receptentoevoeg.php';
     }
     
         function recepten(){
-        n++;
         document.location='recepten.php';
     }
-    </script>
+    </script>-->
 </html>

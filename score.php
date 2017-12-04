@@ -34,19 +34,19 @@ if ($_SESSION['vraag5'] == 'De aardappels zijn blootgesteld aan licht'){
     $score++;  
 }
 
-
-
 ?>
 
 <div id="hoofd" align=center>
     <div id="kop"> score <br><br>
+                <div align="center">
+        <image src="blijeaardappel.jpg" style="width: 227px" algin="left"/><br>
+        </div>
 <?php
     echo "je hebt er $score van de 5";
+    
     session_destroy();
  ?>
-        
-   
-    
+
     </div><br>
      <input id="knop" type=button onClick="location.href='aardappelquiz.php'" value='menu'>  
 </div>
